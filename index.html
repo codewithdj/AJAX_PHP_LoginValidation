@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Signin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!--<link href="signin.css" rel="stylesheet">-->
+
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+ <script type="text/javascript" src="js/jquery-3.2.1.js"> </script>
+
+ <script type="text/javascript">
+
+ $(document).ready(function() {
+
+    $("#submit").click(function() {              
+     user = $('#uname').val();
+     pwd = $('#pwd').val();
+    
+   //   var user1 = $('#inputEmail').innerText();
+   //   var dataString = 'uname=' + user;
+  
+      $.ajax({    //create an ajax request to load_page.php
+        type: 'POST',
+        url: 'data.php',
+        data: {
+          uname : user,
+          pwd : pwd
+        },             
+        dataType: 'html',   //expect html to be returned                
+        success: function(response){                  
+          $('formDiv').hide();
+            $("#responsecontainer").html(response); 
+            console.log("ok");
+            alert(response);
+          }
+         
+        
+//alert(user);
+    });
+    
+});
+});
+
+</script>
+
+  </head>
+
+  <body>
+
+
+ <div id="formDiv" class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+      
+        <input type="text" id="uname" class="form-control" placeholder="Email address" required autofocus>
+        <input type="password" id="pwd" class="form-control" placeholder="Password" required>
+       
+        <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Sign in</button>
+      </form>
+
+    </div>
+
+<div id="responsecontainer" align="center">
+
+</div>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/bootstrap.js"></script>
+    </body>
+</html>
